@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Orion\Facades\Orion;
+use App\Http\Controllers\Api\V1;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-    'namespace' => '\App\Http\Controllers\Api',
-    'middleware' => 'api',
-], function ($router) {
-    Route::post('login', 'AuthController@login');
-//    Route::post('logout', 'AuthController@logout');
-//    Route::post('refresh', 'AuthController@refresh');
-//    Route::post('me', 'AuthController@me');
-});
 
-require_once __DIR__ . '/' . 'api/v1.php';
+Route::group(['prefix' => 'v1', 'middleware' => ['jwt']], function () {
+    Orion::resource('user', V1\UserController::class)->withSoftDeletes();
+});
