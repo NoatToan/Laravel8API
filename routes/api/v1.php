@@ -18,5 +18,6 @@ use App\Http\Controllers\Api\V1;
 
 
 Route::group(['prefix' => 'v1', 'middleware' => ['jwt']], function () {
-    Orion::resource('user', V1\UserController::class)->withSoftDeletes();
+    Orion::resource('users', V1\UserController::class)->withSoftDeletes();
+    Orion::resource('posts', V1\PostController::class)->withSoftDeletes();
 });

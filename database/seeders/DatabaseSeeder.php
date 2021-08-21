@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
             'verified' => 1,
             'is_active' => 1,
         ]);
+        Post::factory(500)->create();
     }
 }
